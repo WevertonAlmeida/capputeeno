@@ -14,10 +14,6 @@ O desafio será implementar um e-commerce para venda de canecas e camisetas que 
 
 #
 
-# 🏁 Resultado 
-
-![Aplicação](public/app.gif)
-
 ## ⚙️ Instalação
 
 Para inicializar o projeto localmente siga os passos descritos abaixo:
