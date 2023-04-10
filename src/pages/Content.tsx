@@ -72,7 +72,7 @@ const Body = styled.div`
     padding-right: 0;
     margin: 0 12px;
     align-items: center;
-    width: 100%
+    width: 100%;
     flex-basis: 100%; 
   }
 `;

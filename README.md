@@ -52,5 +52,8 @@ $ http://localhost:3333
   Algumas bibliotecas foram utilizadas a fim de aprimorar a performance e usabilidade, todas elas estão listadas abaixo:
   
   - [Axios](https://www.npmjs.com/package/axios)
-  - [React DOM Confetti](https://www.npmjs.com/package/react-dom-confetti)
+  - [React Router DOM](https://www.npmjs.com/package/react-router-dom)
   - [React Icons](https://www.npmjs.com/package/react-icons)
+  - [Styled Components](https://www.styled-components.com)
+  - [Fontsource Saira](https://www.npmjs.com/package/@fontsource/saira)
+  - [Fontsource Saira Stencil One](https://www.npmjs.com/package/@fontsource/saira-stencil-one)
