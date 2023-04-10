@@ -290,7 +290,7 @@ const ResumeFooter4 = styled.span`
   font-weight: 400;
 `;
 
-const FotoProduto = styled.img`
+const ProductImage = styled.img`
   height: 100%;
   border-radius: 8px 0px 0px 8px;
   margin-right: 16px;
@@ -303,7 +303,7 @@ const FotoProduto = styled.img`
   }
 `;
 
-const InfoProduto = styled.div`
+const InfoProduct = styled.div`
   display: flex;
   flex-direction: column;
   
@@ -312,14 +312,14 @@ const InfoProduto = styled.div`
   }
 `;
 
-const TitleProduto = styled.div`
+const TitleProduct = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
 
-const NomeProduto = styled.h3`
+const ProductName = styled.h3`
   display: flex;
   flex-direction: flex-start;
   justify-content: center;
@@ -341,7 +341,7 @@ const RemoverProduto = styled.button`
   color: #DE3838;
 `;
 
-const DescricaoProduto = styled.p`
+const DescriptionProduct = styled.p`
   text-align: justify;
   font-family: 'Saira';
   font-style: normal;
@@ -553,15 +553,15 @@ const ShoppingCart: React.FC<Props> = ({ product, onRemove, onChangeQuantidade }
         <ShoppingContent>
           {produtos.map((produto) => (
             <ShoppingInfoProduct key={produto.id}>
-              <FotoProduto src={produto.image_url} alt={produto.name} />
-              <InfoProduto>
-                <TitleProduto>
-                  <NomeProduto>{produto.name}</NomeProduto>
+              <ProductImage src={produto.image_url} alt={produto.name} />
+              <InfoProduct>
+                <TitleProduct>
+                  <ProductName>{produto.name}</ProductName>
                   <RemoverProduto onClick={() => handleRemove(produto.id)}>
                     <FiTrash2 />
                   </RemoverProduto>
-                </TitleProduto>
-                <DescricaoProduto>{produto.description}</DescricaoProduto>
+                </TitleProduct>
+                <DescriptionProduct>{produto.description}</DescriptionProduct>
                 <QuantityPriceProduct>  
                   <QuantityProduct value={produto.quantity} onChange={(event) => handleChangeQuantidade(produto.id, parseInt(event.target.value))}>
                   {[...Array(10)].map((_, index) => (
@@ -572,7 +572,7 @@ const ShoppingCart: React.FC<Props> = ({ product, onRemove, onChangeQuantidade }
                 </QuantityProduct>
                 <ProductPrice>{((produto.price_in_cents * produto.quantity) / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ProductPrice> 
               </QuantityPriceProduct>         
-              </InfoProduto>          
+              </InfoProduct>          
             </ShoppingInfoProduct>
           ))}
         </ShoppingContent>
