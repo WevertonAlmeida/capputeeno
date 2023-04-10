@@ -17,7 +17,6 @@ const SearchBar = styled.div`
   padding: 0 10px;
   margin-right: 32px;
   min-width: 100%;
-  /*max-width: 352px;*/
   height: 42px;
 
   @media only screen and (max-width: 1200px) {

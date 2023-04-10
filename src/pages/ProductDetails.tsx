@@ -9,7 +9,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  /*margin-top: 71px;*/
   margin-bottom: 89px;
 
   @media (max-width: 1200px) {  

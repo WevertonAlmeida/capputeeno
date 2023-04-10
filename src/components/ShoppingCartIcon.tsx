@@ -15,8 +15,6 @@ const CartIconWrapper = styled.div`
 
 const Icon = styled.div`
   position: absolute; 
-  /*display: flex;
-  justify-content: center;*/
   background-color: red;
   color: white;
   border-radius: 50%;
