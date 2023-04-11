@@ -51,5 +51,6 @@ $ http://localhost:3333
   - [React Router DOM](https://www.npmjs.com/package/react-router-dom)
   - [React Icons](https://www.npmjs.com/package/react-icons)
   - [Styled Components](https://www.styled-components.com)
+  - [React Modal](https://www.npmjs.com/package/react-modal)
   - [Fontsource Saira](https://www.npmjs.com/package/@fontsource/saira)
   - [Fontsource Saira Stencil One](https://www.npmjs.com/package/@fontsource/saira-stencil-one)
