@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, {keyframes} from 'styled-components';
 import { FiTrash2, FiArrowLeftCircle } from "react-icons/fi";
+import MessageModal from '../components/MessageModal';
 
 const ModalStyles = {
   content: {
@@ -496,6 +497,8 @@ interface ProdutoCarrinho {
 }
 
 const ShoppingCart: React.FC<Props> = ({ product, onRemove, onChangeQuantidade }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [produtos, setProdutos] = React.useState<ProdutoCarrinho[]>(() => {
     const produtosLocalStorage = localStorage.getItem('cart');
     if (produtosLocalStorage) {
@@ -520,7 +523,12 @@ const ShoppingCart: React.FC<Props> = ({ product, onRemove, onChangeQuantidade }
     const newProdutos: React.SetStateAction<ProdutoCarrinho[]> = [];
     setProdutos(newProdutos);
     localStorage.setItem('cart', JSON.stringify(newProdutos));
+    setIsModalOpen(true);
   };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); 
+  }
 
   const handleChangeQuantidade = (id: number, quantidade: number) => {
     const newProdutos = produtos.map((produto) => {
@@ -613,6 +621,7 @@ const ShoppingCart: React.FC<Props> = ({ product, onRemove, onChangeQuantidade }
         </Notification>
       }    
     </Container>
+    <MessageModal message="Obrigado pela compra!" isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
   );
 };
