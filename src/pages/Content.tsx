@@ -426,7 +426,8 @@ const ProductCatalog: React.FC = () => {
                     {pageNumbers.map((pageNumber) => (                
                     <PageButton
                         key={pageNumber}
-                        onClick={() => handlePageClick(pageNumber)}         
+                        onClick={() => handlePageClick(pageNumber)}   
+                        className={page === pageNumber ? "active" : ""}      
                     >
                         {pageNumber}
                     </PageButton>
