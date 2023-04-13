@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiShoppingBag } from 'react-icons/fi';
 import styled from 'styled-components';
 import { BrowserRouter, Link } from "react-router-dom";
+import { useCart } from "../components/CartContext";
 
 const CartIconWrapper = styled.div`
   position: relative;
@@ -26,17 +27,7 @@ const Icon = styled.div`
 `;
 
 const CartIcon = () => {
-  const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
-  const [itemCount, setItemCount] = useState(0);
-
-  useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
-    const count = cartItems.reduce(
-      (total: number, item: { quantity: number; }) => total + item.quantity,
-      0
-    );
-    setItemCount(count);
-  }, [cartItems]);
+  const { itemCount } = useCart();
 
   return (
     <>

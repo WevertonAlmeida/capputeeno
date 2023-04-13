@@ -7,6 +7,7 @@ import CartIcon from '../components/ShoppingCartIcon';
 import ProductDetails from "../pages/ProductDetails";
 import ShoppingCart from "../pages/ShoppingCart";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { CartProvider } from "../components/CartContext";
 
 const Header = styled.div`
   background-color: #ffffff;
@@ -363,6 +364,7 @@ const ProductCatalog: React.FC = () => {
 
     return (
       <> 
+      <CartProvider>
         <Header>
           <a href='/' style={{textDecoration: "none"}}>                           
           <Logo> 
@@ -445,7 +447,8 @@ const ProductCatalog: React.FC = () => {
               <Route exact path="/cart" component={ShoppingCart} />
             </Switch>             
           </BrowserRouter>    
-        </Body>              
+        </Body>  
+      </CartProvider>            
       </>
     );
 };

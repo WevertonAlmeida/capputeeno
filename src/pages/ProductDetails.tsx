@@ -4,6 +4,7 @@ import axios from "axios";
 import styled, { keyframes } from "styled-components";
 import { FiArrowLeftCircle } from 'react-icons/fi';
 import AppLoader from "../components/Loader";
+import { useCart } from "../components/CartContext";
 
 const Wrapper = styled.div`
   display: flex;
@@ -330,6 +331,7 @@ function ProductDetails() {
     const [product, setProduct] = useState<Product | null>(null);
     const [cartItems, setCartItems] = useState<Product[]>([]);
     const [isAddedToCart, setIsAddedToCart] = useState(false);
+    const { setItemCount } = useCart();
 
     const getCartItems = () => {
       const items = localStorage.getItem("cart");
@@ -357,13 +359,17 @@ function ProductDetails() {
           updatedCartItems[productIndex].quantity += 1;
           setCartItems(updatedCartItems);
           localStorage.setItem('cart', JSON.stringify(updatedCartItems));
+          const count = updatedCartItems.reduce((acc: number, item: any) => acc + item.quantity, 0);
+          setItemCount(count);
         } else {
           const updatedCartItems = [...cartItems, {...product, quantity: 1}];
           setCartItems(updatedCartItems);
           localStorage.setItem('cart', JSON.stringify(updatedCartItems));
-        }
+          const count = updatedCartItems.reduce((acc: number, item: any) => acc + item.quantity, 0);
+          setItemCount(count);
+        }             
 
-        setIsAddedToCart(true);
+        setIsAddedToCart(true);              
 
         setTimeout(() => {
           setIsAddedToCart(false);

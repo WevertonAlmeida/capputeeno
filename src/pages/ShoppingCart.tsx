@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled, {keyframes} from 'styled-components';
 import { FiTrash2, FiArrowLeftCircle } from "react-icons/fi";
 import MessageModal from '../components/MessageModal';
+import { useCart } from "../components/CartContext";
 
 const ModalStyles = {
   content: {
@@ -498,6 +499,7 @@ interface ProdutoCarrinho {
 
 const ShoppingCart: React.FC<Props> = ({ product, onRemove, onChangeQuantidade }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { setItemCount } = useCart();
 
   const [produtos, setProdutos] = React.useState<ProdutoCarrinho[]>(() => {
     const produtosLocalStorage = localStorage.getItem('cart');
@@ -514,6 +516,9 @@ const ShoppingCart: React.FC<Props> = ({ product, onRemove, onChangeQuantidade }
 
     setIsRemovedToCart(true);
 
+    const count = newProdutos.reduce((total, produto) => total + produto.quantity, 0);
+    setItemCount(count);
+
     setTimeout(() => {
       setIsRemovedToCart(false);
     }, 2000);
@@ -523,6 +528,10 @@ const ShoppingCart: React.FC<Props> = ({ product, onRemove, onChangeQuantidade }
     const newProdutos: React.SetStateAction<ProdutoCarrinho[]> = [];
     setProdutos(newProdutos);
     localStorage.setItem('cart', JSON.stringify(newProdutos));
+
+    const count = newProdutos.reduce((total, produto) => total + produto.quantity, 0);
+    setItemCount(count);
+    
     setIsModalOpen(true);
   };
 
@@ -539,6 +548,9 @@ const ShoppingCart: React.FC<Props> = ({ product, onRemove, onChangeQuantidade }
     });
     setProdutos(newProdutos);
     localStorage.setItem('cart', JSON.stringify(newProdutos));
+    
+    const count = newProdutos.reduce((total, produto) => total + produto.quantity, 0);
+    setItemCount(count);
   };
 
   const [isRemovedToCart, setIsRemovedToCart] = useState(false);
