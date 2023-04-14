@@ -557,7 +557,7 @@ const ShoppingCart: React.FC<Props> = ({ product, onRemove, onChangeQuantidade }
 
   const totalProdutos = produtos.reduce((total, produto) => total + produto.quantity, 0);
   const valorTotal = produtos.reduce((total, produto) => total + produto.price_in_cents * produto.quantity, 0) / 100;
-  const valorFrete = valorTotal > 1 ? 40 : 0;
+  const valorFrete = valorTotal < 1 || valorTotal > 900 ? 0 : 40;
 
   return (
     <>
