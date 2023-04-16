@@ -451,18 +451,9 @@ const ProductCatalog: React.FC = () => {
                           <ProductPrice>{(product.price_in_cents / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ProductPrice>
                         </ProductCard>                  
                       </CardContainer>          
-                  ))) : Array.from({ length: 3 }).map((_, index) => (
+                  ))) : Array.from({ length: 12 }).map((_, index) => (
                     <>
                     <React.Fragment key={index}>                    
-                      <CardContainer>
-                        <MyLoader />
-                      </CardContainer>
-                      <CardContainer>
-                        <MyLoader />
-                      </CardContainer>
-                      <CardContainer>
-                        <MyLoader />
-                      </CardContainer>
                       <CardContainer>
                         <MyLoader />
                       </CardContainer>
