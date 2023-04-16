@@ -8,6 +8,7 @@ import ProductDetails from "../pages/ProductDetails";
 import ShoppingCart from "../pages/ShoppingCart";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import { CartProvider } from "../components/CartContext";
+import ContentLoader from 'react-content-loader'
 
 const Header = styled.div`
   background-color: #ffffff;
@@ -266,6 +267,7 @@ const ProductCatalog: React.FC = () => {
     const [categories, setCategories] = useState<string[]>([]);
     const [query, setQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState<string>("Todos os Produtos");
+    const [loading, setLoading] = useState(false);
 
     const options = [  { value: '', label: 'Organizar por' }, 
                        { value: 'created_at', label: 'Novidades' },  
@@ -293,6 +295,10 @@ const ProductCatalog: React.FC = () => {
     const displayedProducts = filteredProducts.slice(startIndex, endIndex);
 
     useEffect(() => {
+        const timeoutId = setTimeout(() => {
+          setLoading(true);
+        }, 2000);
+
         const queryParams = {
           _page: page,
           _limit: 60,
@@ -334,6 +340,8 @@ const ProductCatalog: React.FC = () => {
     
             setCategories(["Todos os Produtos"].concat(categories));
         });
+
+        return () => clearTimeout(timeoutId);
     }, [query, sortBy]);
 
     const handleSearch = () => {
@@ -361,6 +369,27 @@ const ProductCatalog: React.FC = () => {
         setSortBy(e.target.value);
         setPage(1);
     };
+
+    const MyLoader = () => (
+      <CardContainer>
+        <CardContainer>                                                       
+          <ProductCard>
+            <ContentLoader 
+              speed={2}
+              width={256}
+              height={378}
+              viewBox="0 0 256 378"
+              backgroundColor="#f3f3f3"
+              foregroundColor="#ecebeb"
+            >
+              <rect x="0" y="0" rx="8" ry="8" width="256" height="300" />
+              <rect x="0" y="325" rx="5" ry="5" width="225" height="10" />
+              <rect x="0" y="360" rx="5" ry="5" width="150" height="10" />
+            </ContentLoader>
+          </ProductCard>
+        </CardContainer>
+      </CardContainer>
+    )
 
     return (
       <> 
@@ -408,8 +437,8 @@ const ProductCatalog: React.FC = () => {
                   {'>'}
                   </PageButton>
                 </Pagination>          
-                <ProductCatalogWrapper>        
-                  {displayedProducts.map((product) => (          
+                <ProductCatalogWrapper>                          
+                {loading ? (displayedProducts.map((product) => (          
                       <CardContainer key={product.id}>                                                       
                         <ProductCard key={product.id}>
                           <Link to={`/details/${product.id}`}>
@@ -422,6 +451,23 @@ const ProductCatalog: React.FC = () => {
                           <ProductPrice>{(product.price_in_cents / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ProductPrice>
                         </ProductCard>                  
                       </CardContainer>          
+                  ))) : Array.from({ length: 3 }).map((_, index) => (
+                    <>
+                    <React.Fragment key={index}>                    
+                      <CardContainer>
+                        <MyLoader />
+                      </CardContainer>
+                      <CardContainer>
+                        <MyLoader />
+                      </CardContainer>
+                      <CardContainer>
+                        <MyLoader />
+                      </CardContainer>
+                      <CardContainer>
+                        <MyLoader />
+                      </CardContainer>
+                    </React.Fragment>
+                    </>
                   ))}
                 </ProductCatalogWrapper>               
                 <Pagination>            
