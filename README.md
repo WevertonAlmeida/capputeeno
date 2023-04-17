@@ -49,8 +49,9 @@ $ http://localhost:3333
   
   - [Axios](https://www.npmjs.com/package/axios)
   - [React Router DOM](https://www.npmjs.com/package/react-router-dom)
-  - [React Icons](https://www.npmjs.com/package/react-icons)
-  - [Styled Components](https://www.styled-components.com)
+  - [React Icons](https://www.npmjs.com/package/react-icons)  
   - [React Modal](https://www.npmjs.com/package/react-modal)
+  - [React Content Loader](https://www.npmjs.com/package/react-content-loader) 
+  - [Styled Components](https://www.styled-components.com) 
   - [Fontsource Saira](https://www.npmjs.com/package/@fontsource/saira)
   - [Fontsource Saira Stencil One](https://www.npmjs.com/package/@fontsource/saira-stencil-one)
